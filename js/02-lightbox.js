@@ -17,20 +17,8 @@ function createImgCardsMarkup(img) {
 }
 
 galleryRef.insertAdjacentHTML('beforeend', markup);
+
 const lightbox = new SimpleLightbox('.gallery__item', {
     captionsData: 'alt',
     captionDelay: 250,
-});
-lightbox.close();
-
-galleryRef.addEventListener('click', event => {
-    if (event.target.tagName !== 'IMG') return;
-
-    lightbox.show();
-
-    event.preventDefault();
-
-    document.addEventListener('keydown', eventKeyboard => {
-        if (eventKeyboard.code === 'Escape') lightbox.close();
-    });
 });

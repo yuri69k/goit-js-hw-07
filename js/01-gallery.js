@@ -21,7 +21,9 @@ function createImgCardsMarkup(img) {
 }
 
 galleryRef.insertAdjacentHTML('beforeend', markup);
+
 galleryRef.addEventListener('click', onImgClick);
+
 function onImgClick(e) {
     if (e.target.tagName !== 'IMG') return;
     e.preventDefault();
@@ -32,7 +34,10 @@ function onImgClick(e) {
 
     instance.show();
 
-    document.addEventListener('keydown', eventKeyboard => {
+    document.addEventListener('keydown', onCloseModalEscape);
+
+    function onCloseModalEscape(eventKeyboard) {
         if (eventKeyboard.code === 'Escape') instance.close();
-    });
+        document.removeEventListener('keydown', onCloseModalEscape);
+    }
 }
